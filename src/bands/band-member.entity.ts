@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { Band } from './band.entity';
-import { User } from '../users/user.entity'; // Import User Entity เดิมของคุณ
+import { User } from '../users/user.entity';
 
 @Entity('band_members')
 export class BandMember {
@@ -13,17 +13,18 @@ export class BandMember {
   @Column()
   user_id: number;
 
-  @Column({ default: 'member' }) // leader, member
+  @Column()
   role: string;
 
-  @Column({ default: 'active' }) // active, pending, left
-  status: string;
+  @Column({ default: 'active' })
+  status: string; 
 
-  @ManyToOne(() => Band, (band) => band.members)
+  
+  @ManyToOne(() => Band, (band) => band.members, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'band_id' })
   band: Band;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'user_id' })
   user: User;
 }

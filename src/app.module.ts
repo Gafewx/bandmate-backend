@@ -13,6 +13,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { FavoritesModule } from './favorites/favorites.module';
 import { ChatsModule } from './chats/chats.module';
 import { BandsModule } from './bands/bands.module';
+import { SetlistsModule } from './setlists/setlists.module'; // ✅ มีแล้ว
 
 // Import Entities
 import { User } from './users/user.entity';
@@ -24,7 +25,9 @@ import { Favorite } from './favorites/favorite.entity';
 import { Band } from './bands/band.entity';
 import { BandMember } from './bands/band-member.entity';
 import { BandMessage } from './bands/band-message.entity';
-
+// 👇 เพิ่ม 2 บรรทัดนี้ (Entities ของ Setlist)
+import { Setlist } from './setlists/entities/setlist.entity';
+import { Song } from './setlists/entities/song.entity';
 
 @Module({
   imports: [
@@ -35,10 +38,20 @@ import { BandMessage } from './bands/band-message.entity';
       username: process.env.DB_USER || 'root',
       password: process.env.DB_PASSWORD || '',
       database: process.env.DB_NAME || 'bandmate_db',
-      entities: [User, Room, Booking, Review, Notification, Favorite, Band, BandMember, BandMessage],
-      ssl: {
-        rejectUnauthorized: true, 
-      },
+      entities: [
+        User, 
+        Room, 
+        Booking, 
+        Review, 
+        Notification, 
+        Favorite, 
+        Band, 
+        BandMember, 
+        BandMessage,
+        Setlist,
+        Song
+      ],
+      ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: true } : false,
       autoLoadEntities: true,
       synchronize: true,
     }),
@@ -51,6 +64,7 @@ import { BandMessage } from './bands/band-message.entity';
     FavoritesModule,
     ChatsModule,
     BandsModule,
+    SetlistsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

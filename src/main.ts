@@ -12,7 +12,7 @@ async function bootstrap() {
   });
 
   // 👇 แก้บรรทัดนี้สำคัญมาก!
-  const port = process.env.PORT || 3000;
+  const port = process.env.PORT || 4000;
   await app.listen(port, '0.0.0.0');
   console.log(`Application is running on: ${await app.getUrl()}`);
 }

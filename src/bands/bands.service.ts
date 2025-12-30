@@ -137,6 +137,15 @@ export class BandsService {
         });
     }
 
+    async findBandByUserId(userId: number) {
+        // ค้นหาในตาราง BandMember ว่า user_id นี้สังกัดวงไหน
+        const member = await this.memberRepo.findOne({
+            where: { user: { user_id: userId } },
+            relations: ['band']
+        });
+        return member ? member.band : null;
+    }
+
     // 👇 2. ดึงประวัติข้อความในวง
     async getBandMessages(bandId: number) {
         return this.msgRepo.find({
