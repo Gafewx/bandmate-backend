@@ -13,8 +13,8 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { FavoritesModule } from './favorites/favorites.module';
 import { ChatsModule } from './chats/chats.module';
 import { BandsModule } from './bands/bands.module';
-import { SetlistsModule } from './setlists/setlists.module'; // ✅ มีแล้ว
-
+import { SetlistsModule } from './setlists/setlists.module';
+import { SchedulesModule } from './schedules/schedules.module';
 // Import Entities
 import { User } from './users/user.entity';
 import { Room } from './rooms/room.entity';
@@ -65,6 +65,7 @@ import { Song } from './setlists/entities/song.entity';
     ChatsModule,
     BandsModule,
     SetlistsModule,
+    SchedulesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
